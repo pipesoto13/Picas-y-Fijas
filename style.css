@@ -44,6 +44,42 @@ table td, table th {
     padding: 8px;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    justify-content: center;
+
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content p {
+    color: #fff;
+    font-size: 4.5em;
+    margin: 10px
+}
+
+.modal-content button {
+    border: none;
+    background-color: #fe5200;
+    font-size: 0.8em;
+    padding: 10px 15px;
+    margin: 10px;
+    color: #fff;
+}
+
 @media (min-width: 330px) {
     input {
         width: 300px;
