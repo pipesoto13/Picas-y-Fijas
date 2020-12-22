@@ -28,6 +28,10 @@ input {
     width: 90%;
 }
 
+input:focus {
+    outline-color: #84b3ed;
+}
+
 table {
     margin: 10px;
     border-collapse: collapse;
