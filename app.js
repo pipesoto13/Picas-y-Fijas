@@ -23,26 +23,39 @@ $(document).ready(function() {
     $("#number").on("keypress", function(e) {
         if (e.which === 13) {
             const inputNumber = $("#number").val();
-            let contPicas = 0;
-            let contFijas = 0;
-            inputNumber.split('').forEach((element,i) => {
-                if (element == (number[i])) {
-                    contFijas ++;
-                } else if (number.includes(element)){
-                    contPicas ++;
-                }
-            });
+            const arrOfNumber = inputNumber.split('');
+            const repeatedNumber =  arrOfNumber.some(function(v,i,a){
+                return a.lastIndexOf(v)!=i;
+              });
+            if ((inputNumber.length === 4) && (!repeatedNumber)) {
+                $("input").css("outline-color", "#84b3ed");
+                let contPicas = 0;
+                let contFijas = 0;
+                arrOfNumber.forEach((element,i) => {
+                    if (element == (number[i])) {
+                        contFijas ++;
+                    } else if (number.includes(element)){
+                        contPicas ++;
+                    }
+                });
+    
+                const template = `
+                    <tr>
+                        <td>${inputNumber}</td>
+                        <td>${contPicas}</td>
+                        <td>${contFijas}</td>
+                    </tr>
+                `
+                $("table tbody").prepend(template);
+    
+                $("#number").val("");
+                
+            } else {
+                $("input").css("outline-color", "red");
+                alert("Ingrese un número de 4 dígitos y que no tenga dígitos repetidos")
 
-            const template = `
-                <tr>
-                    <td>${inputNumber}</td>
-                    <td>${contPicas}</td>
-                    <td>${contFijas}</td>
-                </tr>
-            `
-            $("table tbody").prepend(template);
+            }
 
-            $("#number").val("");
         }
     })
 })
