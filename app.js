@@ -1,3 +1,5 @@
+let number;
+
 //Function to get number between 0 and 9.
 function getRandomNumber() {
     return Math.floor(Math.random() * (10));
@@ -16,17 +18,19 @@ function getFourDigitsNumber() {
 
         //Save number in array
         digits.push(digit);
-
     }
-    //Juts for display number in console and check
-    const number = digits.join('');
-    console.log(number);
-    return number;
+    return digits;
 }
 
+//Function to start game
+const gameStart = function() {
+    number = getFourDigitsNumber().join('');
+    console.log(number);
+};
+
 $(document).ready(function() {
-    //Call functions for four digits number
-    let number = getFourDigitsNumber();
+    //Call function to start game
+    gameStart();
     
     $("#number").on("keypress", function(e) {
         if (e.which === 13) {
@@ -70,20 +74,20 @@ $(document).ready(function() {
                     $("input").prop( "disabled", true ); //Disable input
                 }
 
-                //Close modal and reload
-                $(".modal-content button").on("click", function(){
-                    $("#myModal").css("display","none");
-                    $("input").prop( "disabled", false ); //Enable input
-                    $("table tbody").children().remove();
-                    location.reload();
-                })
-                
             } else {
                 //Display red colors in validation error if number do not match validations
                 $("input").css("outline-color", "red");
                 $("label span").css("color", "red");
             }
         }
+    })
+
+    //Close modal and reload
+    $(".modal-content button").on("click", function(){
+        $("#myModal").css("display","none");
+        $("input").prop( "disabled", false ); //Enable input
+        $("table tbody").children().remove();
+        gameStart();
     })
 })
 
